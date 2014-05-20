@@ -2,7 +2,14 @@ package pj2014.doclocreg.implementations;
 
 import java.util.HashMap;
 
-public class DocumentLocationRegistry {
+import javax.ejb.Remote;
+import javax.ejb.Singleton;
+
+import pj2014.doclocreg.interfaces.IDocumentLocationRegistry;
+
+@Singleton
+@Remote(IDocumentLocationRegistry.class)
+public class DocumentLocationRegistry implements IDocumentLocationRegistry {
 	
 	private HashMap< String, String[] > patientsDatabases;
 	//TODO auskommentieren wenn Klasse vorhanden; Verbindung nötig?
