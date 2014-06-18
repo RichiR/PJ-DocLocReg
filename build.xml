@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="PJ-DocLocReg" default="deploy">
-	<property file="build.properties"/>
-    <target name="deploy" depends="pack, pack_lib">
-        <copy file="doclocreg.war" 
-        	  tofile="${jboss.path}/standalone/deployments/doclocreg.war"/>
-    </target>
+	<property file="build.properties" />
+	<target name="deploy" depends="pack, pack_lib">
+		<copy file="doclocreg.war" tofile="${jboss.path}/standalone/deployments/doclocreg.war" />
+	</target>
 
-    <target name="pack">
-    	<jar destfile="doclocreg.war">
-    		<fileset dir="./web-src">
-    			<include name="**/*.*"/>
-    			<exclude name="**/DocLocRegProxyFactory.class" />
+	<target name="pack" depends="fetch_dependencies">
+		<jar destfile="doclocreg.war">
+			<fileset dir="./web-src">
+				<include name="**/*.*" />
+				<exclude name="**/DocLocRegProxyFactory.class" />
 			</fileset>
-    	</jar>
-    </target>
-	
+		</jar>
+	</target>
+
 	<target name="pack_lib">
 		<jar destfile="doclocreg_client.jar">
 			<fileset dir="./web-src/WEB-INF/classes">
@@ -23,6 +22,10 @@
 				<include name="pj2014/doclocreg/implementations/*.*" />
 			</fileset>
 		</jar>
+	</target>
+
+	<target name="fetch_dependencies">
+		<copy file="../PJ-DBServices/dbservices_client.jar" tofile="./web-src/WEB-INF/lib/dbservices_client.jar" />
 	</target>
 
 </project>
