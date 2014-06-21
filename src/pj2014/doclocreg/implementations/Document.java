@@ -11,7 +11,6 @@ import pj2014.doclocreg.interfaces.IDocument;
 
 //import pj.mi.rest2014.DocumentStorage;
 
-@Entity
 public class Document implements Serializable, IDocument {
 	
 
